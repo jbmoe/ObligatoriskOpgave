@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ByggemarkedLibrary.Model.Tool>
+
+@{
+    ViewBag.Title = "Værktøjer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Værktøjer</h2>
+
+
+@if (Session["CustomerID"] == null)
+{
+    <p>For at oprette en booking af et værktøj, skal du @Html.ActionLink("logge ind", "index", "login") eller @Html.ActionLink("oprette en kundeprofil", "create", "customer")</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Navn")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Depositum)
+        </th>
+        <th>
+            @Html.DisplayName("Dagspris")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Depositum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PricePrDay)
+            </td>
+            @if (Session["CustomerID"] != null)
+            {
+                <td>
+                    @Html.ActionLink("Opret booking", "Create", "Booking", new { toolId = item.ToolId, toolName = item.Name }, "")
+                </td>
+            }
+        </tr>
+    }
+</table>

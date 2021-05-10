@@ -1,0 +1,34 @@
+﻿@model ByggemarkedLibrary.Model.Customer
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Login</legend>
+
+        @Html.AntiForgeryToken()
+
+        <table class="table">
+            <tr>
+                <td>@Html.LabelFor(a => a.Email)</td>
+                <td>@Html.TextBoxFor(a => a.Email, htmlAttributes: new { @Value = Model.Email })</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(a => a.Password)</td>
+                <td>@Html.TextBoxFor(a => a.Password, htmlAttributes: new { @Value = Model.Password })</td>
+            </tr>
+            <tr>
+                <td>
+        @Html.ActionLink("Opret kundeprofil", "Create", "Customer")
+                </td>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+}

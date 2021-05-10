@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ByggemarkedLibrary.Model.Booking>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Bookinger";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Opret ny booking", "Index", "Tools")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th>
+                @Html.DisplayName("Værktøj")
+            </th>
+            <th>
+                @Html.DisplayName("Pris")
+            </th>
+            <th>
+                @Html.DisplayName("Startdato")
+            </th>
+            <th>
+                @Html.DisplayName("Slutdato")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tool.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Convert.ToString(string.Format("{0:dd/MM/yyy}", item.StartDate))
+                </td>
+                <td>
+                    @Convert.ToString(string.Format("{0:dd/MM/yyy}", item.EndDate))
+                </td>
+                <td>
+                    @Html.ActionLink("Detaljer", "Details", new { id = item.BookingId })
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
