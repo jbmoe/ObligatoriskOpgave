@@ -12,7 +12,7 @@ namespace ByggemarkedLibrary.Controllers.Tests
     [TestFixture()]
     public class ControllerTests
     {
-        private Controller controller = Controller.GetInstance();
+        private readonly Controller controller = Controller.GetInstance();
 
         [TestCase(100, 50, 5, 400)]
         [TestCase(80, 40, 0, 120)]

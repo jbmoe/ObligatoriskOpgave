@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ByggemarkedLibrary.Model;
 using ModelController = ByggemarkedLibrary.Controllers;
 
@@ -13,7 +6,7 @@ namespace Byggemarked_Web.Controllers
 {
     public class CustomerController : Controller
     {
-        private ModelController.Controller controller = ModelController.Controller.GetInstance();
+        private readonly ModelController.Controller controller = ModelController.Controller.GetInstance();
 
         // GET: Customer/Create
         public ActionResult Create()
@@ -32,8 +25,6 @@ namespace Byggemarked_Web.Controllers
 
             controller.CreateCustomer(customer);
             return RedirectToAction("Index", "Login", customer);
-
-
         }
 
 
@@ -43,7 +34,7 @@ namespace Byggemarked_Web.Controllers
             if (Session["CustomerID"] == null) return RedirectToAction("index", "login");
 
             int id = int.Parse(Session["CustomerID"].ToString());
-            Customer customer = controller.FindCustomer((int)id);
+            Customer customer = controller.FindCustomer(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -57,7 +48,7 @@ namespace Byggemarked_Web.Controllers
             if (Session["CustomerID"] == null) return RedirectToAction("index", "login");
 
             int id = int.Parse(Session["CustomerID"].ToString());
-            Customer customer = controller.FindCustomer((int)id);
+            Customer customer = controller.FindCustomer(id);
 
             if (customer == null)
             {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using ByggemarkedLibrary.Model;
@@ -9,7 +8,7 @@ namespace Byggemarked_Web.Controllers
 {
     public class BookingController : Controller
     {
-        private ModelController.Controller controller = ModelController.Controller.GetInstance();
+        private readonly ModelController.Controller controller = ModelController.Controller.GetInstance();
 
         // GET: Booking
         public ActionResult Index()
@@ -17,7 +16,7 @@ namespace Byggemarked_Web.Controllers
             if (Session["CustomerID"] != null)
             {
                 int id = Convert.ToInt32(Session["CustomerID"]);
-                var bookings = controller.FindBookingsForCustomer(id).ToList();
+                var bookings = controller.FindBookingsForCustomer(id);
                 return View(bookings);
             }
             return RedirectToAction("Index", "Login");

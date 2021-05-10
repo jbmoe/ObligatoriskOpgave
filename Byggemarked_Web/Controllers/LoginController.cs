@@ -1,16 +1,12 @@
 ﻿using ByggemarkedLibrary.Model;
 using ModelController = ByggemarkedLibrary.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Byggemarked_Web.Controllers
 {
     public class LoginController : Controller
     {
-        ModelController.Controller controller = ModelController.Controller.GetInstance();
+        private readonly ModelController.Controller controller = ModelController.Controller.GetInstance();
 
         public ActionResult Index(Customer customer)
         {

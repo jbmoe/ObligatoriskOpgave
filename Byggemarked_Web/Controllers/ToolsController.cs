@@ -9,7 +9,7 @@ namespace Byggemarked_Web.Controllers
 {
     public class ToolsController : Controller
     {
-        private ModelController.Controller controller = ModelController.Controller.GetInstance();
+        private readonly ModelController.Controller controller = ModelController.Controller.GetInstance();
         // GET: Tools
         public ActionResult Index()
         {

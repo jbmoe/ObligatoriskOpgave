@@ -110,7 +110,7 @@ namespace Byggemarked_Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            db.Customers.Remove(db.Entry(customer).Entity);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
